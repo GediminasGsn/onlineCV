@@ -23,14 +23,22 @@ public class dataScrape {
         driver.get(url);
         driver.manage().window().maximize();
 
+        // Find the element containing the total count of job listings
+        WebElement totalCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/span[1]"));
+        int totalCount = Integer.parseInt(totalCountElement.getText());
+
         //Loop through every page
+        int totalElements  = 0;
         for (int i = 1; i < 201; i++) {
 
             String url1 = "https://cvonline.lt/lt/search?limit=30&offset=" + i + "0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
             driver.get(url1);
+            if (elementCount == driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/span[1]").getText())) {
+            }
+                break;
             if (i == 2) {
                 continue;
-            }
+            }//skip duplicate page
                 if (!driver.getCurrentUrl().equals(url1)) {
                     break; //end loop
                 }
