@@ -22,8 +22,7 @@ public class dataScrape {
         String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
         driver.manage().window().maximize();
-        //accept cookies
-        driver.findElement(By.xpath("/html/body/div[18]/div[2]/div[1]/div[2]/div[2]/button[1]")).click();
+
         //Loop through every page
         for (int i = 1; i < 201; i++) {
 
