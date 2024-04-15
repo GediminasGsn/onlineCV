@@ -47,7 +47,7 @@ public class dataScrape {
                 //Run it through condition
                 for (WebElement h3 : h3Elements) {
                     String h3Text = h3.getText();
-                    if (h3Text.contains("QA") || h3Text.contains("automation") || h3Text.contains("engineer") || h3Text.contains("testuotojas")) {
+                    if (h3Text.contains("QA") || h3Text.contains("automation") || h3Text.contains("engineer") || h3Text.contains("testuotojas") || h3Text.contains("Junior") || h3Text.contains("Tester") || h3Text.contains("Quality") || h3Text.contains("Assurance")) {
                         System.out.println("");
                         System.out.println("Pozicija: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[1]/div/span[1]")).getText()); // Print position
                         System.out.println("Darbo uždarbis: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[2]/div[2]/div/span[1]/span")).getText()); //Print salary
