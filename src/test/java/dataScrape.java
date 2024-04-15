@@ -19,7 +19,7 @@ public class dataScrape {
     @Test
     public void scrape() {
         ChromeDriver driver = new ChromeDriver();
-        String url = "https://www.cvbankas.lt/?location%5B%5D=606&padalinys%5B%5D=76&keyw=";
+        String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
         driver.manage().window().maximize();
         //accept cookies
