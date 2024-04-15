@@ -6,10 +6,21 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class dataScrape {
+    @Before
+    public void setUp() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     @Test
     public void openLandP() {
-        ChromeDriver driver = new ChromeDriver();
         String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
         driver.manage().window().maximize();
@@ -18,14 +29,15 @@ public class dataScrape {
 
     @Test
     public void scrape() {
-        ChromeDriver driver = new ChromeDriver();
+
         String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
         driver.manage().window().maximize();
 
         // Find the element containing the total count of job listings
         WebElement totalCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/span[1]"));
-        int totalCount = Integer.parseInt(totalCountElement.getText());
+        String totalCountText = totalCountElement.getText().replaceAll("[^\\d]", ""); // Remove non-numeric characters
+        int totalCount = Integer.parseInt(totalCountText);
 
         //Loop through every page
         int totalElements  = 0;
@@ -33,9 +45,7 @@ public class dataScrape {
 
             String url1 = "https://cvonline.lt/lt/search?limit=30&offset=" + i + "0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
             driver.get(url1);
-            if (elementCount == driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/span[1]").getText())) {
-            }
-                break;
+
             if (i == 2) {
                 continue;
             }//skip duplicate page
@@ -63,7 +73,9 @@ public class dataScrape {
                     }
 
                 }
-
+            if (totalElements >= totalCount) {
+                break;
+            }
             }
         }
     }
