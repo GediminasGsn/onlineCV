@@ -1,29 +1,35 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
+
 public class dataScrape {
-    @Before
+    private static ChromeDriver driver;
+
+    @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
-    @After
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
 
+
     @Test
     public void openLandP() {
         String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
-        driver.manage().window().maximize();
+
 
     }
 
@@ -32,7 +38,7 @@ public class dataScrape {
 
         String url = "https://cvonline.lt/lt/search?limit=20&offset=0&categories%5B0%5D=INFORMATION_TECHNOLOGY&towns%5B0%5D=540&fuzzy=true&suitableForRefugees=false&isHourlySalary=false&isRemoteWork=false&isQuickApply=false&searchId=c88daca5-263e-4c7c-8d82-de01c65b5344";
         driver.get(url);
-        driver.manage().window().maximize();
+
 
         // Find the element containing the total count of job listings
         WebElement totalCountElement = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/span[1]"));
