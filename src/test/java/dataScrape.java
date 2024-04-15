@@ -65,8 +65,12 @@ public class dataScrape {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            List<WebElement> h3Elements = driver.findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]"));
+            if (h3Elements.isEmpty()) {
+                break;
+            }
                 //Listing all adds
-                List<WebElement> h3Elements = driver.findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]"));
+//                List<WebElement> h3Elements = driver.findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]"));
 
                 //Run it through condition
                 for (WebElement h3 : h3Elements) {
