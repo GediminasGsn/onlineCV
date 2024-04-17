@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -73,16 +74,23 @@ public class dataScrape {
 //                List<WebElement> h3Elements = driver.findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]"));
 
                 //Run it through condition
-                for (WebElement h3 : h3Elements) {
-                    String h3Text = h3.getText();
-                    if (h3Text.contains("QA") || h3Text.contains("automation") || h3Text.contains("engineer") || h3Text.contains("testuotojas") || h3Text.contains("Junior") || h3Text.contains("Tester") || h3Text.contains("Quality") || h3Text.contains("Assurance")) {
-                        System.out.println("");
-                        System.out.println("Pozicija: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[1]/div/span[1]")).getText()); // Print position
-//                        System.out.println("Darbo uždarbis: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[2]/div[2]/div/span[1]/span")).getText()); //Print salary
-                        System.out.println("Skelbimo URL: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a")).getAttribute("href")); //Print URL
+            for (WebElement h3 : h3Elements) {
+                String h3Text = h3.getText();
+                if (h3Text.contains("QA") || h3Text.contains("automation") || h3Text.contains("engineer") || h3Text.contains("testuotojas") || h3Text.contains("Junior") || h3Text.contains("Tester") || h3Text.contains("Quality") || h3Text.contains("Assurance")) {
+                    System.out.println("");
+                    System.out.println("Pozicija: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[1]/div/span[1]")).getText()); // Print position
+
+                    // Try to find the salary element and print it, if not found print "Salary is not visible"
+                    try {
+                        String salary = h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[2]/div[2]/div/span[1]/span")).getText(); //Print salary
+                        System.out.println("Darbo uždarbis: " + salary);
+                    } catch (NoSuchElementException e) {
+                        System.out.println("Darbo uždarbis nematomas");
                     }
 
+                    System.out.println("Skelbimo URL: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a")).getAttribute("href")); //Print URL
                 }
+            }
             if (totalElements >= totalCount) {
                 break;
             }
