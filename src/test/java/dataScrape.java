@@ -80,7 +80,7 @@ public class dataScrape {
                     System.out.println("");
                     System.out.println("Pozicija: " + h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[1]/div/span[1]")).getText()); // Print position
 
-                    // Try to find the salary element and print it, if not found print "Salary is not visible"
+                    // Try to find the salary element and print it
                     try {
                         String salary = h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[2]/div[2]/div/span[1]/span")).getText(); //Print salary
                         System.out.println("Darbo uždarbis: " + salary);
