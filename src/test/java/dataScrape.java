@@ -71,7 +71,6 @@ public class dataScrape {
                 break;
             }
                 //Listing all adds
-//                List<WebElement> h3Elements = driver.findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]"));
 
                 //Run it through condition
             for (WebElement h3 : h3Elements) {
