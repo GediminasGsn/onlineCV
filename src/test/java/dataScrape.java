@@ -81,7 +81,7 @@ public class dataScrape {
 
                     // Try to find the salary element and print it
                     try {
-                        String salary = h3.findElement(By.xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/ul/li[1]/div/a/div[2]/div[2]/div[2]/div/span[1]/span")).getText(); //Print salary
+                        String salary = h3.findElement(By.xpath(" //*/div/a/div[2]/div[2]/div[2]/div/span/span")).getText(); //Print salary
                         System.out.println("Darbo uždarbis: " + salary);
                     } catch (NoSuchElementException e) {
                         System.out.println("Darbo uždarbis nematomas");
